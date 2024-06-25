@@ -1,5 +1,8 @@
-class Constants:
+class AUTH:
     EMAIL = 'dariagrishina10123@yandex.ru'
     PASSWORD = '123456'
     NAME = 'Daria'
-    URL = 'https://stellarburgers.nomoreparties.site/'
+
+
+class URLS:
+    MAIN_URL = 'https://stellarburgers.nomoreparties.site/'

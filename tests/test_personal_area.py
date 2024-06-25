@@ -1,4 +1,3 @@
-from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
@@ -9,30 +8,26 @@ class TestStellarBurgerPersonalArea:
     def test_transition_to_personal_area(self, login):
         driver = login
         driver.find_element(*Locators.PERSONAL_AREA).click()
-        mess = WebDriverWait(driver, 5).until(EC.visibility_of_element_located((By.XPATH, ".//p[text() = 'В этом разделе вы можете изменить свои персональные данные']"))).text
 
-        assert mess == 'В этом разделе вы можете изменить свои персональные данные'
+        assert WebDriverWait(driver, 5).until(EC.visibility_of_element_located(Locators.CHANGE_PERSONAL_INFORMATION))
 
     def test_transition_to_constructor(self, login):
         driver = login
         driver.find_element(*Locators.PERSONAL_AREA).click()
-        driver.find_element(By.XPATH, ".//p[text() = 'Конструктор']/parent::a").click()
-        mess = WebDriverWait(driver, 5).until(EC.visibility_of_element_located(Locators.COLLECT_BURGER)).text
+        driver.find_element(*Locators.CONSTRUCTOR_LINK).click()
 
-        assert mess == 'Соберите бургер'
+        assert WebDriverWait(driver, 5).until(EC.visibility_of_element_located(Locators.COLLECT_BURGER))
 
     def test_transition_to_logo(self, login):
         driver = login
         driver.find_element(*Locators.PERSONAL_AREA).click()
-        driver.find_element(By.XPATH, ".//header/nav[1]/div[1]/a").click()
-        mess = WebDriverWait(driver, 5).until(EC.visibility_of_element_located(Locators.COLLECT_BURGER)).text
+        driver.find_element(*Locators.LOGO_LINK).click()
 
-        assert mess == 'Соберите бургер'
+        assert WebDriverWait(driver, 5).until(EC.visibility_of_element_located(Locators.COLLECT_BURGER))
 
     def test_logout(self, login):
         driver = login
         driver.find_element(*Locators.PERSONAL_AREA).click()
-        driver.find_element(By.XPATH, ".//button[text() = 'Выход']").click()
-        mess = WebDriverWait(driver, 5).until(EC.visibility_of_element_located((By.XPATH, ".//h2[text() = 'Вход']"))).text
+        driver.find_element(*Locators.LOGOUT_BUTTON).click()
 
-        assert mess == 'Вход'
+        assert WebDriverWait(driver, 5).until(EC.visibility_of_element_located(Locators.LOGIN_TEXT))
