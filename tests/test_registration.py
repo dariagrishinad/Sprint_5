@@ -2,7 +2,7 @@ from faker import Faker
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-from constants import AUTH
+from constants import Auth
 from locators import Locators
 
 faker = Faker()
@@ -10,9 +10,9 @@ faker = Faker()
 
 class TestStellarBurgerRegistration:
     def test_successful_registration(self, driver):
-        name = AUTH.NAME
+        name = Auth.NAME
         email = faker.email()
-        password = AUTH.PASSWORD
+        password = Auth.PASSWORD
         driver.find_element(*Locators.LOGIN_TO_ACCOUNT).click()
         driver.find_element(*Locators.REGISTRATION_LINK).click()
         driver.find_element(*Locators.NAME).send_keys(name)
@@ -23,7 +23,7 @@ class TestStellarBurgerRegistration:
         assert WebDriverWait(driver, 5).until(EC.visibility_of_element_located(Locators.LOGIN_TEXT))
 
     def test_registration_with_invalid_password(self, driver):
-        name = AUTH.NAME
+        name = Auth.NAME
         email = faker.email()
         password = '12345'
         driver.find_element(*Locators.LOGIN_TO_ACCOUNT).click()

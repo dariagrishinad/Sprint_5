@@ -1,8 +1,8 @@
-class AUTH:
+class Auth:
     EMAIL = 'dariagrishina10123@yandex.ru'
     PASSWORD = '123456'
     NAME = 'Daria'
 
 
-class URLS:
+class Urls:
     MAIN_URL = 'https://stellarburgers.nomoreparties.site/'
